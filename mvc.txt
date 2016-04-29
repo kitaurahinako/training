@@ -12,9 +12,8 @@ view
 <h1>記事詳細</h1>
 <div class="container">
     <div class="article">
-	<% @articles.each.do |article| %>
-      <div class="title"> <%= article.first.title %> </div>
-      <div class="text"> <%= article.first.text %> </div>
+      <div class="title"> <%= @article.title %> </div>
+      <div class="text"> <%= @article.text %> </div>
       <div class="comment">
         <%= @comments.each do |comment|%>
           <p><%= comment.text %></p>
@@ -26,15 +25,9 @@ view
 controller
 
 class ArticlesController < ApplicationController
-  def show
-    @user = current_user
-  end
 
   def show
-    @articles = Article.where(user_id: @user.id)
-  end
-
-  def show
+    @article = Article.where(user_id: current_user.id).first
     @comments = Comment.where(article_id: @article.id)
   end
 
