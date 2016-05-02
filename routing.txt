@@ -15,6 +15,24 @@ Rails.application.routes.draw do
 end
 
 
+ company_projects POST   /companies/:company_id/projects(.:format)          projects#create
+ new_company_project GET    /companies/:company_id/projects/new(.:format)      projects#new
+edit_company_project GET    /companies/:company_id/projects/:id/edit(.:format) projects#edit
+     company_project PATCH  /companies/:company_id/projects/:id(.:format)      projects#update
+                     PUT    /companies/:company_id/projects/:id(.:format)      projects#update
+                     DELETE /companies/:company_id/projects/:id(.:format)      projects#destroy
+           companies GET    /companies(.:format)                               companies#index
+                     POST   /companies(.:format)                               companies#create
+         new_company GET    /companies/new(.:format)                           companies#new
+        edit_company GET    /companies/:id/edit(.:format)                      companies#edit
+             company GET    /companies/:id(.:format)                           companies#show
+                     PATCH  /companies/:id(.:format)                           companies#update
+                     PUT    /companies/:id(.:format)                           companies#update
+                     DELETE /companies/:id(.:format)                           companies#destroy
+            projects GET    /projects(.:format)                                projects#index
+             project GET    /projects/:id(.:format)                            projects#show
+
+
 Q3
 Rails.application.routes.draw do
   resources :companies do
@@ -23,11 +41,32 @@ Rails.application.routes.draw do
       end
   end
   resources :projects do
-        member do
-  		      post 'like_count'
-        end
+      member do
+  	  post 'like_count'
+      end
     end
 end
+
+
+ Prefix Verb   URI Pattern                        Controller#Action
+like_count_article POST   /articles/:id/like_count(.:format) articles#like_count
+          articles GET    /articles(.:format)                articles#index
+                   POST   /articles(.:format)                articles#create
+       new_article GET    /articles/new(.:format)            articles#new
+      edit_article GET    /articles/:id/edit(.:format)       articles#edit
+           article GET    /articles/:id(.:format)            articles#show
+                   PATCH  /articles/:id(.:format)            articles#update
+                   PUT    /articles/:id(.:format)            articles#update
+                   DELETE /articles/:id(.:format)            articles#destroy
+like_count_project POST   /projects/:id/like_count(.:format) projects#like_count
+          projects GET    /projects(.:format)                projects#index
+                   POST   /projects(.:format)                projects#create
+       new_project GET    /projects/new(.:format)            projects#new
+      edit_project GET    /projects/:id/edit(.:format)       projects#edit
+           project GET    /projects/:id(.:format)            projects#show
+                   PATCH  /projects/:id(.:format)            projects#update
+                   PUT    /projects/:id(.:format)            projects#update
+                   DELETE /projects/:id(.:format)            projects#destroy
 
 
 Q4
@@ -36,3 +75,13 @@ Rails.application.routes.draw do
     resources :companies
   end
 end
+
+
+admin_companies GET    /admin/companies(.:format)          admin/companies#index
+                   POST   /admin/companies(.:format)          admin/companies#create
+ new_admin_company GET    /admin/companies/new(.:format)      admin/companies#new
+edit_admin_company GET    /admin/companies/:id/edit(.:format) admin/companies#edit
+     admin_company GET    /admin/companies/:id(.:format)      admin/companies#show
+                   PATCH  /admin/companies/:id(.:format)      admin/companies#update
+                   PUT    /admin/companies/:id(.:format)      admin/companies#update
+                   DELETE /admin/companies/:id(.:format)      admin/companies#destroy
