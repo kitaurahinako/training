@@ -1,35 +1,38 @@
 Q1
-resources    index, show, new, create, edit, update, destroyという
-						 主要な７つのルーティングの指定
-collection   主要な7つ以外のルーティングの指定、idなし
-member       主要な7つ以外のルーティングの指定、idあり
-namespace    パスをグループ化するときに用いる
+resources: 　index, show, create, new, edit, update, destroyの
+           　主要7つのルーティングの指定
+collection:　主要７つ以外の、idなしのルーティングの指定
+member:      主要７つ以外の、idありのルーティングの指定
+namespace:   パスをグループ化するときに使用
+
 
 Q2
 Rails.application.routes.draw do
-		resources :companies	do
-			resources :projects, except: [:index, :show]
-		end
-		resources :projects, only: [:index, :show]
+  resources :companies do
+    resources :projects, except: [:index, :show]
+  end
+  resources :projects, only: [:index, :show]
 end
+
 
 Q3
 Rails.application.routes.draw do
-	resources :articles do
-		member do
-				post 'like_count'
-		end
-	end
-	resources :projects do
-			member do
-					post 'like_count'
-			end
-	end
+  resources :companies do
+      member do
+          post 'like_count'
+      end
+  end
+  resources :projects do
+        member do
+  		      post 'like_count'
+        end
+    end
 end
+
 
 Q4
 Rails.application.routes.draw do
-	namespace :admin do
-		resources :companies
-	end
+  namespace :admin do
+    resources :companies
+  end
 end
