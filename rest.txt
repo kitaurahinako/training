@@ -1,0 +1,26 @@
+REST
+
+Q1
+url               アクション      HTTPメソッド    役割
+/users            index         GET            一覧画面を生成
+/users/:id        show          GET            詳細画面を生成
+/users/new        new           GET            登録画面を生成
+/users            create        POST           登録処理
+/users/:id/edit   edit          GET            編集画面を生成
+/users/:id        update        POST           更新処理
+/users/:id        destroy       DELETE         削除処理
+
+Q2
+CRUD: Create, Read Update, Deleteの頭文字。
+HTTPメソッドでは、それぞれ
+create - POST, PUT
+read   - GET
+update - PUT
+delete - DELETE
+
+Q3
+コメント一覧　      url: /comments       アクション:index
+記事の新規作成画面 　url: /articles/new   アクション:new
+記事の新規作成      url: /articles       アクション:create
+ユーザー詳細        url: /users/:id      アクション:show
+記事削除           url: /articles       アクション:delete
