@@ -37,7 +37,7 @@ Q3
 Rails.application.routes.draw do
   resources :companies do
       collection do
-          post 'ranking'
+          get 'ranking'
       end
   end
   resources :projects do
