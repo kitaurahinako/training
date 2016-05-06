@@ -1,0 +1,81 @@
+Q1
+resources: 　index, show, create, new, edit, update, destroyの
+           　主要7つのルーティングの指定
+collection:　主要７つ以外の、idなしのルーティングの指定。
+             テーブル全体に働きかけるアクションを指定する。検索結果や最近登録されたものの表示など
+member:      主要７つ以外の、idありのルーティングの指定。
+             一つのレコードに対して働きかけるアクションを指定する。詳細情報の表示など
+namespace:   パスをグループ化するときに使用
+
+
+Q2
+Rails.application.routes.draw do
+  resources :companies, shallow: true do
+    resources :projects
+  end
+end
+
+  company_projects GET    /companies/:company_id/projects(.:format)     projects#index
+                   POST   /companies/:company_id/projects(.:format)     projects#create
+new_company_project GET    /companies/:company_id/projects/new(.:format) projects#new
+      edit_project GET    /projects/:id/edit(.:format)                  projects#edit
+           project GET    /projects/:id(.:format)                       projects#show
+                   PATCH  /projects/:id(.:format)                       projects#update
+                   PUT    /projects/:id(.:format)                       projects#update
+                   DELETE /projects/:id(.:format)                       projects#destroy
+         companies GET    /companies(.:format)                          companies#index
+                   POST   /companies(.:format)                          companies#create
+       new_company GET    /companies/new(.:format)                      companies#new
+      edit_company GET    /companies/:id/edit(.:format)                 companies#edit
+           company GET    /companies/:id(.:format)                      companies#show
+                   PATCH  /companies/:id(.:format)                      companies#update
+                   PUT    /companies/:id(.:format)                      companies#update
+                   DELETE /companies/:id(.:format)                      companies#destroy                            projects#show
+
+
+Q3
+Rails.application.routes.draw do
+  resources :companies do
+      collection do
+          post 'ranking'
+      end
+  end
+  resources :projects do
+      member do
+  	  post 'like_count'
+      end
+    end
+end
+
+ranking_companies POST   /companies/ranking(.:format)       companies#ranking
+         companies GET    /companies(.:format)               companies#index
+                   POST   /companies(.:format)               companies#create
+       new_company GET    /companies/new(.:format)           companies#new
+      edit_company GET    /companies/:id/edit(.:format)      companies#edit
+           company GET    /companies/:id(.:format)           companies#show
+                   PATCH  /companies/:id(.:format)           companies#update
+                   PUT    /companies/:id(.:format)           companies#update
+                   DELETE /companies/:id(.:format)           companies#destroy
+like_count_project POST   /projects/:id/like_count(.:format) projects#like_count
+          projects GET    /projects(.:format)                projects#index
+                   POST   /projects(.:format)                projects#create
+       new_project GET    /projects/new(.:format)            projects#new
+      edit_project GET    /projects/:id/edit(.:format)       projects#edit
+           project GET    /projects/:id(.:format)            projects#show
+                   PATCH  /projects/:id(.:format)            projects#update
+                   PUT    /projects/:id(.:format)            projects#update
+                   DELETE /projects/:id(.:format)            projects#destroy
+
+
+
+Q4
+Rails.application.routes.draw do
+  namespace :admin do
+    resources :companies, only: [:new, :create, :edit, :destroy]
+  end
+end
+
+admin_companies POST   /admin/companies(.:format)          admin/companies#create
+ new_admin_company GET    /admin/companies/new(.:format)      admin/companies#new
+edit_admin_company GET    /admin/companies/:id/edit(.:format) admin/companies#edit
+     admin_company DELETE /admin/companies/:id(.:format)      admin/companies#destroy
