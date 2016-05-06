@@ -1,5 +1,5 @@
 Q1
-rake:まだ実行していないマイグレーションファイルを実行すること
+rake:データベースの操作など様々なタスクを呼び出し、実行する機能。rubyで記述されたビルドツール。
 dsl:ドメイン固有言語の略で、特定のタスク向けに設計されたコンピュータ言語のこと。
     汎用プログラミング言語の逆。データベースの問い合わせに使われる、SQLなど。
 汎用プログラミング言語:特定の用途に特化しない、コンピュータプログラミング言語。Java, Rubyなど。
@@ -16,9 +16,9 @@ Q3
 namespace :finc do
   desc "FiNCを5回表示"
   task :show_FiNC => :environment do
-    foo(5)
+    finc(5)
   end
-  def foo(n)
+  def finc(n)
     for i in 1..n do
     puts "FiNC"
     end
