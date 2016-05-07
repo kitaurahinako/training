@@ -1,0 +1,43 @@
+Q1  MVCのメリット
+・ ロジックを担当するmodel、画面の表示を担当するview、そして両者をつなぐcontrollerと役割を分けることで、お互いの仕様変更の影響を受けにくい。
+   例えば画面のレイアウトを変える時は、modelやcontrollerはそのままでviewだけを変えれば良い。
+・似たようなロジックであれば、同じmodelを使いまわすことができる。view、controllerでも同様。
+・分業がしやすくなり、それぞれの専門家が自分の得意な分野の実装に集中することができる。同時に複数の分野で作業することができる。
+
+
+Q2　ーコードの書き方がまだよくわかっていないのでかなり間違っていると思います
+
+view
+
+<h1>記事詳細</h1>
+<div class="container">
+    <div class="article">
+      <div class="title"> <%= @article.title %> </div>
+      <div class="text"> <%= @article.text %> </div>
+      <div class="comment">
+        <%= @comments.each do |comment|%>
+          <p><%= comment.text %></p>
+        <% end -%>
+      </div>
+    </div>
+</div>
+
+controller
+
+class ArticlesController < ApplicationController
+
+  def show
+    @article = Article.where(user_id: current_user.id).first
+    @comments = Comment.where(article_id: @article.id)
+  end
+
+end
+
+
+Q3 viewにロジックを書くべきでない理由:
+
+・viewにロジックを書くと、見た目を少し変更したいときにロジックまで変えなければならなくなる
+・テストができなくなる
+　(　https://csharptan.wordpress.com/2011/12/20/ロジックを分けましょう/　に書いてあったので書いてみたのですが、
+    viewに関することはGUIで確認する→GUIのテストは難しい→viewにロジックを書くとGUIでテストしなければならないのでテストができなくなる　
+    という理解でよろしいでしょうか…？)
