@@ -1,0 +1,11 @@
+<h1>スレッド一覧</h1>
+  <ul>
+    <% @my_threads.each do |my_thread| %>
+    <li>
+      <%= link_to my_thread.title, my_thread_path(my_thread.id) %>
+      <%= link_to "編集", edit_my_thread_path(my_thread.id) %>
+      <%= link_to "削除", my_thread_path(my_thread.id), method: :delete, data: {confirm: "Are you sure?"} %>
+</li>
+    <% end %>
+  </ul>
+  <p><%= link_to "スレッド作成", new_my_thread_path %>
