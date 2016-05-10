@@ -4,12 +4,16 @@
   <% @my_comments.each do |my_comment| %>
     <tr>
       <td><%= my_comment.content %></td>
+      <% if current_user.id == my_comment.user_id %>
       <td><%= link_to '編集', edit_my_comment_path(my_comment) %></td>
       <td><%= link_to '削除', my_comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
     </tr>
   <% end %>
 </table>
 <%= render partial: "my_comments/form", locals: {my_thread: @my_thread, my_comment: @my_comment}%>
 <br>
+<% if current_user.id == @my_thread.user_id %>
 <%= link_to 'Edit', edit_my_thread_path(@my_thread) %> |
+<% end %>
 <%= link_to 'Back', my_threads_path %>

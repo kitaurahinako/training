@@ -20,6 +20,7 @@ class MyThreadsController < ApplicationController
 
   def create
     @my_thread = MyThread.new(my_thread_params)
+    @my_thread.user_id = current_user.id
     if @my_thread.save
       redirect_to my_threads_path
     else
@@ -36,7 +37,9 @@ class MyThreadsController < ApplicationController
   end
 
   def destroy
-    @my_thread.destroy
+    if @my_thread.user_id == current_user.id
+      @my_thread.destroy
+    end
     redirect_to my_threads_path
   end
 
@@ -47,7 +50,7 @@ class MyThreadsController < ApplicationController
     end
 
     def my_thread_params
-      params.require(:my_thread).permit(:title, :overview)
+      params.require(:my_thread).permit(:title, :overview, :user_id)
     end
 
 end

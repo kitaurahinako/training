@@ -5,6 +5,7 @@ class MyCommentsController < ApplicationController
   def create
       @my_comment = MyComment.new(my_comment_params)
       @my_comment.my_thread_id = params[:my_thread_id]
+      @my_comment.user_id = current_user.id
       if @my_comment.save
         redirect_to my_thread_path(@my_comment.my_thread_id)
       else
@@ -24,7 +25,9 @@ class MyCommentsController < ApplicationController
   end
 
   def destroy
-    @my_comment.destroy
+    if @my_comment.user_id == current_user.id
+      @my_comment.destroy
+    end
     redirect_to my_thread_path(@my_comment.my_thread_id)
   end
 
@@ -35,7 +38,7 @@ class MyCommentsController < ApplicationController
     end
 
     def my_comment_params
-      params.require(:my_comment).permit(:content)
+      params.require(:my_comment).permit(:content, :user_id)
     end
 
 end
