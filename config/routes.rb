@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :my_threads
+  devise_for :users
+  resources :my_threads, shallow: true do
+    resources :my_comments
+  end
+
+  root 'my_threads#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

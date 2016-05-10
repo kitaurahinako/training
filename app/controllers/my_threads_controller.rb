@@ -7,6 +7,8 @@ class MyThreadsController < ApplicationController
   end
 
   def show
+    @my_comments = @my_thread.my_comments
+    @my_comment = MyComment.new
   end
 
   def new
@@ -26,7 +28,6 @@ class MyThreadsController < ApplicationController
   end
 
   def update
-    @my_thread = MyThread.find(params[:id])
     if @my_thread.update(my_thread_params)
       redirect_to my_threads_path
     else
