@@ -1,8 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  user_id: 1
+  content: MyText
+  my_thread_id: 1
 
 two:
-  name: MyString
-  title: MyString
-  overview: MyString
+  user_id: 1
+  content: MyText
+  my_thread_id: 1

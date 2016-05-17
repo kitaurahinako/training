@@ -7,6 +7,7 @@ class MyThreadsController < ApplicationController
     @my_threads = MyThread.all
   end
 
+<<<<<<< HEAD
   # GET /my_threads/1
   # GET /my_threads/1.json
   def show
@@ -20,6 +21,7 @@ class MyThreadsController < ApplicationController
     @my_thread = MyThread.new
   end
 
+<<<<<<< HEAD
   # GET /my_threads/1/edit
   def edit
   end
@@ -66,9 +68,8 @@ class MyThreadsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_my_thread
-      @my_thread = MyThread.find(params[:id])
-    end
+
+  private
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_thread_params
