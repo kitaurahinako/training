@@ -1,0 +1,69 @@
+Q1
+  1-1
+    1.5                Float
+    "Kurisu_Ken"       String
+    true               TrueClass
+    Date.today         Date
+    Time.now           Time
+    a=[1,2,3]のa        Array
+    上記のaについてa[0]   Array
+    h = {"last_name":"kurisu", "first_name":"ken"}のh:Hash
+    上記のhについてh[:last_name]:Hash
+
+  1-2
+    Article.first           Article
+    Article.find(1)         Article
+    Article.first.comments  Comment
+    User.first.articles     Article
+    Comment.first.user      User
+
+
+Q2
+    class Book
+
+      attr_accessor: :title, :price
+
+      def initialize(title)
+        @title = title
+      end
+
+      def initialize(price)
+        @price = price
+      end
+
+      def rename_title(title)
+        @title = title
+      end
+
+      def price_increase(price)
+        @price*2
+      end
+
+    end
+
+    class Comic < Book
+
+      def price_increase(price)
+        @price*1.5
+      end
+
+    end
+
+    class Magazine < Book
+
+      def price_increase(price)
+        @price*3
+      end
+
+    end
+
+
+Q3
+  3-1,3-2
+    all     Projectクラスのクラスメソッド
+    find    Projectクラスのクラスメソッド
+    update  Projectクラスのインスタンスメソッド
+
+  3-3
+    ActiveRecordライブラリに規約通りのメソッドは定義されており、
+    CoCという原則によって規約通りであれば設定がいらないから
